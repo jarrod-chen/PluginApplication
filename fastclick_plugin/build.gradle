@@ -1,0 +1,79 @@
+/*
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+//常用io操作
+    implementation "commons-io:commons-io:2.6"
+
+    // Android DSL  Android编译的大部分gradle源码
+    implementation 'com.android.tools.build:gradle:4.0.1'
+    implementation 'com.android.tools.build:gradle-api:4.0.1'
+    //ASM
+    implementation 'org.ow2.asm:asm:7.1'
+    implementation 'org.ow2.asm:asm-util:7.1'
+    implementation 'org.ow2.asm:asm-commons:7.1'
+}
+repositories {
+    mavenLocal()
+}
+uploadArchives {
+    repositories.mavenDeployer {
+        pom.groupId = 'com.jarrod.plugin'
+        pom.artifactId = 'fastclick'
+        pom.version = '1.0.0'
+        //发布到本地仓库
+        repository(url: uri('../repo'))
+    }
+}*/
+
+apply plugin: 'groovy'
+apply plugin: "com.gradle.plugin-publish"
+
+dependencies {
+    implementation gradleApi() //gradle sdk
+    implementation localGroovy() //groovy sdk
+
+    //这里根据插件需要，添加对应的依赖
+    implementation 'com.android.tools.build:gradle:4.0.1'
+    //ASM
+    implementation 'org.ow2.asm:asm:7.1'
+}
+repositories {
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.12.0"
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+version = "1.0.0"    //配置插件的版本号
+group = "com.jarrod.gradlePlugin"   //插件的群组，插件的classpath会用到
+
+pluginBundle {
+    website = 'http://www.gradle.org/'
+    vcsUrl = 'https://github.com/gradle/gradle'
+    description = 'Android控件防止连续点击'  //插件描述
+    tags = ['Android', 'fastclick', 'asm']  //插件的tag。可以通过这个在插件门户上搜索
+
+    plugins {
+        greetingsPlugin {
+            id = 'com.jarrod.gradlePlugin.fastclick'   //插件的id，到时候apply的插件id
+            displayName = 'fastclick plugin'
+        }
+    }
+}

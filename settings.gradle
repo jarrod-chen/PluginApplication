@@ -1,0 +1,3 @@
+include ':fastclick_plugin'
+include ':app'
+rootProject.name = "PluginApplication"

@@ -1,0 +1,33 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+//1. gradle 在configuration解析 project的build.gradle
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
+        maven{url uri('repo')}
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        //2. 用来导入用于构建Android项目的Gradle 插件库，
+        //   子module中 apply plugin: 'com.android.application'才有用
+        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "com.jarrod.plugin:fastclick:1.0.0"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+//        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central/'}
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
