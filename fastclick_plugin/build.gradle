@@ -65,9 +65,9 @@ version = "1.0.0"    //配置插件的版本号
 group = "com.jarrod.gradlePlugin"   //插件的群组，插件的classpath会用到
 
 pluginBundle {
-    website = 'http://www.gradle.org/'
-    vcsUrl = 'https://github.com/gradle/gradle'
-    description = 'Android控件防止连续点击'  //插件描述
+    website = 'https://jarrod-chen.github.io/'
+    vcsUrl = 'https://github.com/jarrod-chen/PluginApplication'
+    description = 'voided Android view clicked fast to open muti-activity or other'  //插件描述
     tags = ['Android', 'fastclick', 'asm']  //插件的tag。可以通过这个在插件门户上搜索
 
     plugins {
